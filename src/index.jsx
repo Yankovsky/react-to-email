@@ -5,6 +5,7 @@ import juice from 'juice'
 import declassify from 'declassify'
 import fs from 'fs'
 import path from 'path'
+import fonts from './fonts'
 
 const DIST_PATH = 'dist'
 const COMPILED_TEMPLATES_DIR = 'compiled-templates'
@@ -21,6 +22,9 @@ const generateHtml = (styleTags, body) => {
   return `<!DOCTYPE html>
   <html>
     <head>
+        <style>
+            ${ fonts }
+        </style>
         ${ styleTags }
     </head>
     <body style="margin:0">
