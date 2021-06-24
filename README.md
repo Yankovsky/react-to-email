@@ -1,5 +1,7 @@
 # React -> email html
 
+Generates static html. Uses styled-components for css.
+
 `yarn` to install all dependencies
 
 `yarn dev` to start development in watch mode
