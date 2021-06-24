@@ -1,0 +1,25 @@
+{
+  "name": "tulipshare-emails",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "declassify": "^2.1.0",
+    "juice": "^8.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "build": "babel src -d dist && node dist/index.js",
+    "dev": "nodemon --exec 'yarn build' & http-server dist -p 3030 -o"
+  }
+}
