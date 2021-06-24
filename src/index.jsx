@@ -6,13 +6,21 @@ import declassify from 'declassify'
 import fs from 'fs'
 import path from 'path'
 
-import { MyExamplePage } from './emails/RegisterComplete'
+const DIST_PATH = 'dist'
+const COMPILED_TEMPLATES_DIR = 'compiled-templates'
+const COMPILED_TEMPLATES_PATH = path.join('dist', COMPILED_TEMPLATES_DIR)
+const EMAIL_TEMPLATES_DIR = 'email-templates'
+const EMAIL_TEMPLATES_PATH = path.join('src', EMAIL_TEMPLATES_DIR)
 
-const generateHtml = (title, styleTags, body) => {
+const generateIndexHtml = (pagesPaths) => {
+  const linksList = pagesPaths.map(pagePath => `<li><a href="${ COMPILED_TEMPLATES_DIR }/${ pagePath }.html">${ pagePath }</a></li>`).join('')
+  return `<ul style="margin: 100px auto; padding: 20px; width: 600px; border: 1px solid black; font-size: 24px;">${ linksList }</ul>`
+}
+
+const generateHtml = (styleTags, body) => {
   return `<!DOCTYPE html>
   <html>
     <head>
-        <title>${ title }</title>
         ${ styleTags }
     </head>
     <body style="margin:0">
@@ -21,22 +29,25 @@ const generateHtml = (title, styleTags, body) => {
   </html>`
 }
 
-const distPath = 'dist'
 
-const pages = [
-  {
-    Component: MyExamplePage,
-    pagePath: 'my-example-page.html',
-    title: 'My Html page',
-  },
-]
+const emailTemplates = fs.readdirSync(EMAIL_TEMPLATES_PATH)
+  .map((dirName) => {
+    return {
+      Component: require(`./${ EMAIL_TEMPLATES_DIR }/${ dirName }`).default,
+      pagePath: dirName,
+    }
+  })
 
-pages.forEach(({ Component, pagePath, title }) => {
+if (!fs.existsSync(COMPILED_TEMPLATES_PATH)) {
+  fs.mkdirSync(COMPILED_TEMPLATES_PATH)
+}
+
+emailTemplates.forEach(({ Component, pagePath }) => {
   const sheet = new ServerStyleSheet()
   const html = ReactDOMServer.renderToStaticMarkup(sheet.collectStyles(<Component/>))
   const styleTags = sheet.getStyleTags()
-  const htmlResult = declassify.process(juice(generateHtml(title, styleTags, html)))
-  fs.writeFileSync(path.join(distPath, pagePath), htmlResult)
+  const htmlResult = declassify.process(juice(generateHtml(styleTags, html)))
+  fs.writeFileSync(path.join(COMPILED_TEMPLATES_PATH, `${ pagePath }.html`), htmlResult)
 })
 
-fs.writeFileSync(path.join(distPath, 'index.html'), pages.map(({ pagePath }) => `<a href="${ pagePath }">${ pagePath }</a>`).join(''))
+fs.writeFileSync(path.join(DIST_PATH, 'index.html'), generateIndexHtml(emailTemplates.map(({ pagePath }) => pagePath)))
