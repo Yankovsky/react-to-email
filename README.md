@@ -7,6 +7,52 @@
 `yarn build` to build the code base and 
 put all generated html email pages in dist/ folder
 
+# Example usage
+
+```js
+import React from 'react'
+
+import { Title } from '../../components/Title'
+import { Text } from '../../components/Text'
+import { StyledTable } from './styled'
+
+export const MyExamplePage = () => {
+  return <StyledTable>
+    <Title>My Title</Title>
+    <Text>My Text</Text>
+  </StyledTable>
+}
+```
+-> 
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Html page</title>
+	<style data-styled="true" data-styled-version="5.3.0">
+        .fIhgoC:hover {
+            color: green !important;
+        }
+
+        @media (max-width: 1200px) {
+            .fIhgoC {
+                color: pink !important;
+                background: blue !important;
+            }
+        }
+	</style>
+</head>
+<body style="margin:0">
+<table style="background: lightcyan; margin: 200px;">
+	<tr>
+		<td><h1 class="fIhgoC" style="color: red;">My Title</h1>
+			<p style="font-style: italic; background: lightcoral;">My Text</p></td>
+	</tr>
+</table>
+</body>
+</html>
+```
+
 # Challenges
 
 - он использует pug (jade) и переиспользует общий шаблон, хедер, футер
