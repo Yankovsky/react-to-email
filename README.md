@@ -26,9 +26,8 @@ put all generated html email pages in dist/ folder
 - Полезно https://templates.mailchimp.com/getting-started/html-email-basics/
 - mailchimp может добавлять собственный процессинг
 - inline css https://github.com/Automattic/juice
-- использовать Типограф
-- https://www.caniemail.com/
 - https://docs.google.com/spreadsheets/d/1LMIT7wvUHgEncYHtI1TssjICxwa-hDAs9ui0-Lvkido/edit?usp=sharing
+- [Топовые рекомендации](https://gist.github.com/ArtyomResh/008b285d4a6aec3493bd911661ebe53e)
 
 
 ## Can I email?
@@ -40,6 +39,10 @@ put all generated html email pages in dist/ folder
 [https://docs.google.com/spreadsheets/d/1LMIT7wvUHgEncYHtI1TssjICxwa-hDAs9ui0-Lvkido/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1LMIT7wvUHgEncYHtI1TssjICxwa-hDAs9ui0-Lvkido/edit?usp=sharing)
 
 ## Useful resources on creating emails
+
+- [https://paddle.com/blog/why-we-created-an-email-system-using-react/](https://paddle.com/blog/why-we-created-an-email-system-using-react/)
+
+- [https://building.lang.ai/how-to-build-emails-with-react-fcf941b125d1](https://building.lang.ai/how-to-build-emails-with-react-fcf941b125d1)
 
 - [Article on how to style emails](https://webcache.googleusercontent.com/search?q=cache:Qpic5sqjfB0J:https://customer.io/blog/how-to-make-css-play-nice-in-html-emails-without-breaking-everything/+&cd=1&hl=en&ct=clnk&gl=ru)
 
