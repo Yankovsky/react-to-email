@@ -39,4 +39,4 @@ pages.forEach(({ Component, pagePath, title }) => {
   fs.writeFileSync(path.join(distPath, pagePath), htmlResult)
 })
 
-fs.writeFileSync(path.join(distPath, 'index.html'), pages.map(({ pagePath }) => `<a href="${ pagePath }">${ pagePath }</a>`))
+fs.writeFileSync(path.join(distPath, 'index.html'), pages.map(({ pagePath }) => `<a href="${ pagePath }">${ pagePath }</a>`).join(''))
