@@ -26,16 +26,17 @@ const distPath = 'dist'
 const pages = [
   {
     Component: MyExamplePage,
-    pagePath: 'my-example-page.html'
+    pagePath: 'my-example-page.html',
+    title: 'My Html page',
   },
 ]
 
-pages.forEach(({ Component, pagePath }) => {
+pages.forEach(({ Component, pagePath, title }) => {
   const sheet = new ServerStyleSheet()
   const html = ReactDOMServer.renderToStaticMarkup(sheet.collectStyles(<Component/>))
   const styleTags = sheet.getStyleTags()
-  const htmlResult = declassify.process(juice(generateHtml('My Html page', styleTags, html)))
+  const htmlResult = declassify.process(juice(generateHtml(title, styleTags, html)))
   fs.writeFileSync(path.join(distPath, pagePath), htmlResult)
 })
 
-fs.writeFileSync(path.join(distPath, 'index.html'), pages.map(({pagePath}) => `<a href="${pagePath}">${pagePath}</a>`))
+fs.writeFileSync(path.join(distPath, 'index.html'), pages.map(({ pagePath }) => `<a href="${ pagePath }">${ pagePath }</a>`))
